@@ -4,6 +4,10 @@ import scala.util.Try
 
 
 讀取day.csv的(dteday,cnt)至rdd1:
+
+# filter(x=>Try(x(0).toInt).isSuccess) : 過濾第一行（因為非整數）
+# map(x=>(x(1),x(15).toInt)) : 取第一和第十五行
+
 	val rdd1 = sc.textFile("file:///data/day.csv").map(x => x.split(",")).filter(x=>Try(x(0).toInt).isSuccess).map(x=>(x(1),x(15).toInt))
 
 hour.csv的(dteday,(hr,cnt))至rdd2:
